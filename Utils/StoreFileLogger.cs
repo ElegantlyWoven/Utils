@@ -81,24 +81,19 @@ namespace Utils
 
         static private async void FileLogTask()
         {
-            Debug.WriteLine("FileLogTask START - filename: '{0}'", s_filename);
+            Debug.WriteLine("FileLogTask() START - filename: '{0}'", s_filename);
 
             StorageFolder folder = ApplicationData.Current.LocalFolder;
             String filename = s_filename + ".txt";
             String backupname = s_filename + ".bak";
 
             // Backup old file
-            // 29/3/15  Must catch FileNotFoundException
             try
             {
                 StorageFile f = await folder.GetFileAsync(filename);
-                if (f != null)
-                {
-                    await f.RenameAsync(backupname, NameCollisionOption.ReplaceExisting);
-                }
+                await f.RenameAsync(backupname, NameCollisionOption.ReplaceExisting);
             }
-            catch (FileNotFoundException) 
-            { }
+            catch (FileNotFoundException) { }
 
             // Loop
             try
@@ -128,12 +123,12 @@ namespace Utils
                         break;
                 }
             }
-            catch (IOException ioe)
+            catch (Exception ex)
             {
-                Debug.WriteLine(ioe.Message);
+                Debug.WriteLine("FileLogTask() - Exception '{0}'", ex.Message);
             }
-             
-            Debug.WriteLine("FileLogTask END");
+
+            Debug.WriteLine("FileLogTask() END");
         }
 
         #endregion

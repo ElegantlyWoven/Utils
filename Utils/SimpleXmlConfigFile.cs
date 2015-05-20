@@ -16,8 +16,7 @@ namespace Utils
             {
                 _elRoot = XElement.Load(filename);
             }
-            catch (FileNotFoundException)
-            { }
+            catch (FileNotFoundException) { }
         }
 
         public String GetConfigEntry(String section, String name)
