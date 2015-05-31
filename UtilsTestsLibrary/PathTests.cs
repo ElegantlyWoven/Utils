@@ -246,6 +246,8 @@ namespace UtilsTestsLibrary
 
                 Utils.Logger.D("Name: '{0}'", name);
 
+                Assert.IsTrue(name == "");
+
                 if (name != "")
                 {
                     n += name.Length + 2;
@@ -267,6 +269,8 @@ namespace UtilsTestsLibrary
 
                 Utils.Logger.D("Name: '{0}'", name);
 
+                Assert.IsTrue((name == "folder") || (name == ""));
+
                 if (name != "")
                 {
                     n += name.Length + 1;
@@ -287,6 +291,8 @@ namespace UtilsTestsLibrary
                 name = Utils.Path.NextFolderName(fileName, n);
 
                 Utils.Logger.D("Name: '{0}'", name);
+
+                Assert.IsTrue((name == "folder") || (name == "subfolder") || (name == ""));
 
                 if (name != "")
                 {
@@ -310,6 +316,8 @@ namespace UtilsTestsLibrary
 
                 Utils.Logger.D("Name: '{0}'", name);
 
+                Assert.IsTrue(name == "");
+
                 if (name != "")
                 {
                     n += name.Length + 2;
@@ -331,6 +339,8 @@ namespace UtilsTestsLibrary
 
                 Utils.Logger.D("Name: '{0}'", name);
 
+                Assert.IsTrue((name == "folder") || (name == ""));
+
                 if (name != "")
                 {
                     n += name.Length + 1;
@@ -351,6 +361,8 @@ namespace UtilsTestsLibrary
                 name = Utils.Path.NextFolderName(fileName, n);
 
                 Utils.Logger.D("Name: '{0}'", name);
+
+                Assert.IsTrue((name == "folder") || (name == "subfolder") || (name == ""));
 
                 if (name != "")
                 {
