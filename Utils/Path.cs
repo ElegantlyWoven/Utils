@@ -53,6 +53,7 @@ namespace Utils
             return type;
         }
 
+
         /// <summary>
         /// Returns the next folder name starting at index, or String.Empty
         /// </summary>
@@ -60,7 +61,13 @@ namespace Utils
         /// <returns></returns>
         public static String NextFolderName(String path, int startIndex)
         {
-            Assert.IsTrue(path.StartsWith("\\"), "NextFolderName() - path arrgh");
+            // Handle Abs path and starting at 0
+            if (path[startIndex] == '\\')
+            {
+                ++startIndex;
+            }
+
+            Assert.IsTrue(path[startIndex] != '\\', "NextFolderName() - path arrgh");
 
             String folder = String.Empty;
             int i = path.IndexOf("\\", startIndex);
@@ -72,16 +79,18 @@ namespace Utils
         }
 
 
-        /// <summary>
-        /// Returns true if the paths are the same
-        /// </summary>
-        /// <param name="path1"></param>
-        /// <param name="path2"></param>
-        /// <returns></returns>
-        public static Boolean Equals(String path1, String path2)
-        {
-            return TrimTrailingSlash(path1) == TrimTrailingSlash(path2);
-        }
+        // NO Abs/Rel consideration at all
+
+        ///// <summary>
+        ///// Returns true if the paths are the same
+        ///// </summary>
+        ///// <param name="path1"></param>
+        ///// <param name="path2"></param>
+        ///// <returns></returns>
+        //public static Boolean Equals(String path1, String path2)
+        //{
+        //    return TrimTrailingSlash(path1) == TrimTrailingSlash(path2);
+        //}
 
         /// <summary>
         /// Returns the string without the final slash, or the final string
