@@ -58,9 +58,9 @@ namespace Utils
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static String FolderName(String path, int startIndex)
+        public static String NextFolderName(String path, int startIndex)
         {
-            Assert.IsTrue(path.StartsWith("\\"), "FolderName() - path arrgh");
+            Assert.IsTrue(path.StartsWith("\\"), "NextFolderName() - path arrgh");
 
             String folder = String.Empty;
             int i = path.IndexOf("\\", startIndex);
