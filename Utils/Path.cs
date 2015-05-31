@@ -5,37 +5,72 @@ namespace Utils
     public class Path
     {
         /// <summary>
-        /// Returns the parent directory path or null
+        /// Returns the parent directory path, or String.Empty if no slash found
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
         public static String Parent(String child)
         {
-            String parent = child;
-            int i = parent.LastIndexOf("\\");
+            String parent = String.Empty;
+            int i = child.LastIndexOf("\\");
             if (i > -1)
             {
-                parent = parent.Substring(0, i);
-                return parent;
+                parent = child.Substring(0, i);
             }
-            return null;
+            return parent;
         }
 
         /// <summary>
-        /// Returns just the file name
+        /// Returns just the file name, or the full string if no slash found
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
         public static String FileName(String path)
         {
+            // 28/5/15 Assume it is just a filename
+            String file = path;
             int i = path.LastIndexOf("\\");
             if (i > -1)
             {
-                String file = path.Substring(i + 1);
-                return file;
+                file = path.Substring(i + 1);
             }
-            return null;
+            return file;
         }
+
+        /// <summary>
+        /// Returns just the file extension, or String.Empty
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static String FileType(String path)
+        {
+            String type = String.Empty;
+            int i = path.LastIndexOf(".");
+            if (i > -1)
+            {
+                type = path.Substring(i + 1);
+            }
+            return type;
+        }
+
+        /// <summary>
+        /// Returns the next folder name without trailing slash starting at index, or String.Empty
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static String FolderName(String path, int startIndex)
+        {
+            Assert.IsTrue(path.StartsWith("\\"), "FolderName() - path arrgh");
+
+            String folder = String.Empty;
+            int i = path.IndexOf("\\", startIndex);
+            if (i > -1)
+            {
+                folder = path.Substring(startIndex, i - startIndex);
+            }
+            return folder;
+        }
+
 
         /// <summary>
         /// Returns true if the paths are the same
@@ -49,7 +84,7 @@ namespace Utils
         }
 
         /// <summary>
-        /// 
+        /// Returns the string without the final slash, or the final string
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>

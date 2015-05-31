@@ -87,7 +87,7 @@ namespace Utils
             String filename = s_filename + ".txt";
             String backupname = s_filename + ".bak";
 
-            // Backup old file
+            // Backup old type
             try
             {
                 StorageFile f = await folder.GetFileAsync(filename);
