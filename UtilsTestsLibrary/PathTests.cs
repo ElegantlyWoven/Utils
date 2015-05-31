@@ -359,5 +359,88 @@ namespace UtilsTestsLibrary
 
             } while (name != "");
         }
+
+
+
+        [TestMethod]
+        public void TestTrimTrailingSlash_AbsFolderSlash()
+        {
+            String filePath = "\\folder\\";
+
+            String parent = Utils.Path.TrimTrailingSlash(filePath);
+
+            Assert.IsTrue(parent == "\\folder");
+        }
+
+        [TestMethod]
+        public void TestTrimTrailingSlash_AbsFolderFolderSlash()
+        {
+            String filePath = "\\folder\\subfolder\\";
+
+            String parent = Utils.Path.TrimTrailingSlash(filePath);
+
+            Assert.IsTrue(parent == "\\folder\\subfolder");
+        }
+
+        [TestMethod]
+        public void TestTrimTrailingSlash_AbsFolderNoSlash()
+        {
+            String filePath = "\\folder";
+
+            String parent = Utils.Path.TrimTrailingSlash(filePath);
+
+            Assert.IsTrue(parent == "\\folder");
+        }
+
+        [TestMethod]
+        public void TestTrimTrailingSlash_AbsFolderFolderNoSlash()
+        {
+            String filePath = "\\folder\\subfolder";
+
+            String parent = Utils.Path.TrimTrailingSlash(filePath);
+
+            Assert.IsTrue(parent == "\\folder\\subfolder");
+        }
+
+
+        [TestMethod]
+        public void TestTrimTrailingSlash_RelFolderSlash()
+        {
+            String filePath = "folder\\";
+
+            String parent = Utils.Path.TrimTrailingSlash(filePath);
+
+            Assert.IsTrue(parent == "folder");
+        }
+
+        [TestMethod]
+        public void TestTrimTrailingSlash_RelFolderFolderSlash()
+        {
+            String filePath = "folder\\subfolder\\";
+
+            String parent = Utils.Path.TrimTrailingSlash(filePath);
+
+            Assert.IsTrue(parent == "folder\\subfolder");
+        }
+
+        [TestMethod]
+        public void TestTrimTrailingSlash_RelFolderNoSlash()
+        {
+            String filePath = "folder";
+
+            String parent = Utils.Path.TrimTrailingSlash(filePath);
+
+            Assert.IsTrue(parent == "folder");
+        }
+
+        [TestMethod]
+        public void TestTrimTrailingSlash_RelFolderFolderNoSlash()
+        {
+            String filePath = "folder\\subfolder";
+
+            String parent = Utils.Path.TrimTrailingSlash(filePath);
+
+            Assert.IsTrue(parent == "folder\\subfolder");
+        }
     }
 }

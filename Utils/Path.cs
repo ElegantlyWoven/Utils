@@ -54,7 +54,7 @@ namespace Utils
         }
 
         /// <summary>
-        /// Returns the next folder name without trailing slash starting at index, or String.Empty
+        /// Returns the next folder name starting at index, or String.Empty
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
