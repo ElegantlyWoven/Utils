@@ -103,9 +103,7 @@ namespace Utils
                     }
                 }
             }
-            catch (ConfigurationErrorsException cee)
-            {
-            }
+            catch (ConfigurationErrorsException) {}
 
             return il;
         }
