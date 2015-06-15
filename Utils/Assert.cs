@@ -2,9 +2,9 @@
 
 namespace Utils
 {
-    // Release mode too
     public static class Assert
     {
+        // Release mode too
         static public void IsTrue(Boolean b, String msg, params object[] args)
         {
             if (!b)
@@ -16,7 +16,7 @@ namespace Utils
         }
     }
 
-    // A specific exception
+    // Throw a specific exception
     public class AssertionException : Exception
     {
         public AssertionException(String s) :
