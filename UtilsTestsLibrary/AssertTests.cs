@@ -29,9 +29,9 @@ namespace UtilsTestsLibrary
 
                 Assert.IsTrue(false);
             }
-            catch (Exception ex)
+            catch (Utils.AssertionException aex)
             {
-                Assert.IsTrue(ex.Message == "this is false");
+                Assert.IsTrue(aex.Message == "this is false");
             }
         }
     }
