@@ -11,7 +11,7 @@ namespace UtilsTestsLibrary
     public class SimpleXmlConfigFileTests
     {
         [TestMethod]
-        public void TestSettingNoFile()
+        public void SimpleXmlConfigFile_NoFile()
         {
             Utils.SimpleXmlConfigFile settings = new Utils.SimpleXmlConfigFile("nonesuch.xml");
 
@@ -20,7 +20,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestSettingNoSection()
+        public void SimpleXmlConfigFile_NoSection()
         {
             Utils.SimpleXmlConfigFile settings = new Utils.SimpleXmlConfigFile("Settings.xml");
 
@@ -29,7 +29,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestSettingNoEntry()
+        public void SimpleXmlConfigFile_NoEntry()
         {
             Utils.SimpleXmlConfigFile settings = new Utils.SimpleXmlConfigFile("Settings.xml");
 
@@ -38,7 +38,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestSettingWithEntry()
+        public void SimpleXmlConfigFile_WithEntry()
         {
             Utils.SimpleXmlConfigFile settings = new Utils.SimpleXmlConfigFile("Settings.xml");
 

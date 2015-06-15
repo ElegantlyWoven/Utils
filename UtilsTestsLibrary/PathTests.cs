@@ -13,7 +13,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestParent_AbsFile()
+        public void Parent_AbsFile()
         {
             String filePath = "\\file.typ";
 
@@ -23,7 +23,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestParent_AbsFolderFile()
+        public void Parent_AbsFolderFile()
         {
             String filePath = "\\folder\\file.typ";
 
@@ -33,7 +33,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestParent_AbsFolderFolder()
+        public void Parent_AbsFolderFolder()
         {
             String filePath = "\\folder\\subfolder";
 
@@ -43,7 +43,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestParent_RelFile()
+        public void Parent_RelFile()
         {
             String filePath = "file.typ";
 
@@ -53,7 +53,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestParent_RelFolderFile()
+        public void Parent_RelFolderFile()
         {
             String filePath = "folder\\file.typ";
 
@@ -63,7 +63,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestParent_RelFolderFolder()
+        public void Parent_RelFolderFolder()
         {
             String filePath = "folder\\subfolder";
 
@@ -73,7 +73,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestParent_Junk()
+        public void Parent_Junk()
         {
             String filePath = "blah";
 
@@ -86,7 +86,7 @@ namespace UtilsTestsLibrary
 
 
         [TestMethod]
-        public void TestFileName_AbsFile()
+        public void FileName_AbsFile()
         {
             String filePath = "\\file.typ";
 
@@ -96,7 +96,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileName_AbsFolderFile()
+        public void FileName_AbsFolderFile()
         {
             String filePath = "\\folder\\file.typ";
 
@@ -106,7 +106,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileName_AbsFolderFolder()
+        public void FileName_AbsFolderFolder()
         {
             String filePath = "\\folder\\subfolder";
 
@@ -116,7 +116,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileName_RelFile()
+        public void FileName_RelFile()
         {
             String filePath = "file.typ";
 
@@ -126,7 +126,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileName_RelFolderFile()
+        public void FileName_RelFolderFile()
         {
             String filePath = "folder\\file.typ";
 
@@ -136,7 +136,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileName_RelFolderFolder()
+        public void FileName_RelFolderFolder()
         {
             String filePath = "folder\\subfolder";
 
@@ -146,7 +146,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileName_Junk()
+        public void FileName_Junk()
         {
             String filePath = "blah";
 
@@ -160,7 +160,7 @@ namespace UtilsTestsLibrary
 
 
         [TestMethod]
-        public void TestFileType_AbsFile()
+        public void FileType_AbsFile()
         {
             String filePath = "\\file.typ";
 
@@ -170,7 +170,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileType_AbsFolderFile()
+        public void FileType_AbsFolderFile()
         {
             String filePath = "\\folder\\file.typ";
 
@@ -180,7 +180,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileType_AbsFolderFolder()
+        public void FileType_AbsFolderFolder()
         {
             String filePath = "\\folder\\subfolder";
 
@@ -190,7 +190,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileType_RelFile()
+        public void FileType_RelFile()
         {
             String filePath = "file.typ";
 
@@ -200,7 +200,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileType_RelFolderFile()
+        public void FileType_RelFolderFile()
         {
             String filePath = "folder\\file.typ";
 
@@ -210,7 +210,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileType_RelFolderFolder()
+        public void FileType_RelFolderFolder()
         {
             String filePath = "folder\\subfolder";
 
@@ -220,7 +220,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestFileType_Junk()
+        public void FileType_Junk()
         {
             String filePath = "blah";
 
@@ -231,151 +231,159 @@ namespace UtilsTestsLibrary
 
 
 
-
-
         [TestMethod]
-        public void TestNextFolderName_AbsFile()
+        public void ParsePath_AbsFile()
         {
             String fileName = "\\file.typ";
 
-            int n = 0;
-            String name;
+            String current = fileName;
+            String folder;
+            String rest;
             do
             {
-                name = Utils.Path.NextFolderName(fileName, n);
+                Utils.Path.ParsePath(current, out folder, out rest);
 
-                Utils.Logger.D("Name: '{0}'", name);
+                Utils.Logger.D("folder: '{0}', rest: '{1}'", folder, rest);
 
-                Assert.IsTrue(name == "");
+                Assert.IsTrue(folder == "file.typ");
+                Assert.IsTrue(rest == "");
 
-                if (name != "")
+                if (rest != "")
                 {
-                    n += name.Length + 2;
+                    current = rest;
                 }
-
-            } while (name != "");
+            } while (rest != "");
         }
 
         [TestMethod]
-        public void TestNextFolderName_AbsFolderFile()
+        public void ParsePath_AbsFolderFile()
         {
             String fileName = "\\folder\\file.typ";
 
-            int n = 0;
-            String name;
+            String current = fileName;
+            String folder;
+            String rest;
             do
             {
-                name = Utils.Path.NextFolderName(fileName, n);
+                Utils.Path.ParsePath(current, out folder, out rest);
 
-                Utils.Logger.D("Name: '{0}'", name);
+                Utils.Logger.D("folder: '{0}', rest: '{1}'", folder, rest);
 
-                Assert.IsTrue((name == "folder") || (name == ""));
+                Assert.IsTrue((folder == "folder" && rest == "\\file.typ") ||
+                                (folder == "file.typ" && rest == ""));
 
-                if (name != "")
+                if (rest != "")
                 {
-                    n += name.Length + 1;
+                    current = rest;
                 }
-
-            } while (name != "");
+            } while (rest != "");
         }
 
         [TestMethod]
-        public void TestNextFolderName_AbsFolderFolder()
+        public void ParsePath_AbsFolderFolder()
         {
             String fileName = "\\folder\\subfolder";
 
-            int n = 0;
-            String name;
+            String current = fileName;
+            String folder;
+            String rest;
             do
             {
-                name = Utils.Path.NextFolderName(fileName, n);
+                Utils.Path.ParsePath(current, out folder, out rest);
 
-                Utils.Logger.D("Name: '{0}'", name);
+                Utils.Logger.D("folder: '{0}', rest: '{1}'", folder, rest);
 
-                Assert.IsTrue((name == "folder") || (name == "subfolder") || (name == ""));
+                Assert.IsTrue((folder == "folder" && rest == "\\subfolder") ||
+                                (folder == "subfolder" && rest == ""));
 
-                if (name != "")
+                if (rest != "")
                 {
-                    n += name.Length + 1;
+                    current = rest;
                 }
-
-            } while (name != "");
+            } while (rest != "");
         }
 
 
         [TestMethod]
-        public void TestNextFolderName_RelFile()
+        public void ParsePath_RelFile()
         {
             String fileName = "file.typ";
 
-            int n = 0;
-            String name;
+            String current = fileName;
+            String folder;
+            String rest;
             do
             {
-                name = Utils.Path.NextFolderName(fileName, n);
+                Utils.Path.ParsePath(current, out folder, out rest);
 
-                Utils.Logger.D("Name: '{0}'", name);
+                Utils.Logger.D("folder: '{0}', rest: '{1}'", folder, rest);
 
-                Assert.IsTrue(name == "");
+                Assert.IsTrue(folder == "file.typ");
+                Assert.IsTrue(rest == "");
 
-                if (name != "")
+                if (rest != "")
                 {
-                    n += name.Length + 2;
+                    current = rest;
                 }
-
-            } while (name != "");
+            } while (rest != "");
         }
 
         [TestMethod]
-        public void TestNextFolderName_RelFolderFile()
+        public void ParsePath_RelFolderFile()
         {
             String fileName = "folder\\file.typ";
 
-            int n = 0;
-            String name;
+            String current = fileName;
+            String folder;
+            String rest;
             do
             {
-                name = Utils.Path.NextFolderName(fileName, n);
+                Utils.Path.ParsePath(current, out folder, out rest);
 
-                Utils.Logger.D("Name: '{0}'", name);
+                Utils.Logger.D("folder: '{0}', rest: '{1}'", folder, rest);
 
-                Assert.IsTrue((name == "folder") || (name == ""));
+                Assert.IsTrue((folder == "folder" && rest == "\\file.typ") ||
+                                (folder == "file.typ" && rest == ""));
 
-                if (name != "")
+                if (rest != "")
                 {
-                    n += name.Length + 1;
+                    current = rest;
                 }
-
-            } while (name != "");
+            } while (rest != "");
         }
 
         [TestMethod]
-        public void TestNextFolderName_RelFolderFolder()
+        public void ParsePath_RelFolderFolder()
         {
             String fileName = "folder\\subfolder";
 
-            int n = 0;
-            String name;
+            String current = fileName;
+            String folder;
+            String rest;
             do
             {
-                name = Utils.Path.NextFolderName(fileName, n);
+                Utils.Path.ParsePath(current, out folder, out rest);
 
-                Utils.Logger.D("Name: '{0}'", name);
+                Utils.Logger.D("folder: '{0}', rest: '{1}'", folder, rest);
 
-                Assert.IsTrue((name == "folder") || (name == "subfolder") || (name == ""));
+                Assert.IsTrue((folder == "folder" && rest == "\\subfolder") ||
+                                 (folder == "subfolder" && rest == ""));
 
-                if (name != "")
+                if (rest != "")
                 {
-                    n += name.Length + 1;
+                    current = rest;
                 }
-
-            } while (name != "");
+            } while (rest != "");
         }
 
 
 
+        /// <summary>
+        /// TestTrimTrailingSlash
+        /// </summary>
+
         [TestMethod]
-        public void TestTrimTrailingSlash_AbsFolderSlash()
+        public void TrimTrailingSlash_AbsFolderSlash()
         {
             String filePath = "\\folder\\";
 
@@ -385,7 +393,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestTrimTrailingSlash_AbsFolderFolderSlash()
+        public void TrimTrailingSlash_AbsFolderFolderSlash()
         {
             String filePath = "\\folder\\subfolder\\";
 
@@ -395,7 +403,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestTrimTrailingSlash_AbsFolderNoSlash()
+        public void TrimTrailingSlash_AbsFolderNoSlash()
         {
             String filePath = "\\folder";
 
@@ -405,7 +413,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestTrimTrailingSlash_AbsFolderFolderNoSlash()
+        public void TrimTrailingSlash_AbsFolderFolderNoSlash()
         {
             String filePath = "\\folder\\subfolder";
 
@@ -416,7 +424,7 @@ namespace UtilsTestsLibrary
 
 
         [TestMethod]
-        public void TestTrimTrailingSlash_RelFolderSlash()
+        public void TrimTrailingSlash_RelFolderSlash()
         {
             String filePath = "folder\\";
 
@@ -426,7 +434,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestTrimTrailingSlash_RelFolderFolderSlash()
+        public void TrimTrailingSlash_RelFolderFolderSlash()
         {
             String filePath = "folder\\subfolder\\";
 
@@ -436,7 +444,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestTrimTrailingSlash_RelFolderNoSlash()
+        public void TrimTrailingSlash_RelFolderNoSlash()
         {
             String filePath = "folder";
 
@@ -446,7 +454,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestTrimTrailingSlash_RelFolderFolderNoSlash()
+        public void TrimTrailingSlash_RelFolderFolderNoSlash()
         {
             String filePath = "folder\\subfolder";
 

@@ -54,46 +54,39 @@ namespace Utils
         }
 
 
+
         /// <summary>
-        /// Returns the next folder name starting at index, or String.Empty
+        /// Splits the given path "[\\]folder\\rest" into "folder" and "\\rest"
+        /// Use in a loop on rest until rest == ""
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static String NextFolderName(String path, int startIndex)
+        public static void ParsePath(String path, out String folder, out String rest)
         {
-            // Handle Abs path and starting at 0
-            if (path[startIndex] == '\\')
+            // Handle Abs paths
+            if (path[0] == '\\')
             {
-                ++startIndex;
+                path = path.Substring(1);
             }
 
-            Assert.IsTrue(path[startIndex] != '\\', "NextFolderName() - path arrgh");
+            Assert.IsTrue(path[0] != '\\', "NextFolderName() - path arrgh");
 
-            String folder = String.Empty;
-            int i = path.IndexOf("\\", startIndex);
+            String child = String.Empty;
+            int i = path.IndexOf("\\");
             if (i > -1)
             {
-                folder = path.Substring(startIndex, i - startIndex);
+                folder = path.Substring(0, i);
+                rest = path.Substring(i);
             }
-            return folder;
+            else
+            {
+                folder = path;
+                rest = "";
+            }
         }
 
-
-        // NO Abs/Rel consideration at all
-
-        ///// <summary>
-        ///// Returns true if the paths are the same
-        ///// </summary>
-        ///// <param name="path1"></param>
-        ///// <param name="path2"></param>
-        ///// <returns></returns>
-        //public static Boolean Equals(String path1, String path2)
-        //{
-        //    return TrimTrailingSlash(path1) == TrimTrailingSlash(path2);
-        //}
-
         /// <summary>
-        /// Returns the string without the final slash, or the final string
+        /// Returns the string without the final slash, or just the final string as is
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>

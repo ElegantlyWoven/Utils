@@ -13,7 +13,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestAssertTrue()
+        public void Assert_True()
         {
             Utils.Assert.IsTrue(true, "this is true");
 
@@ -21,7 +21,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestAssertFalse()
+        public void Assert_False()
         {
             try
             {

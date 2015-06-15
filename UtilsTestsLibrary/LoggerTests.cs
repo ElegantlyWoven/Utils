@@ -12,7 +12,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLogD()
+        public void Logger_D()
         {
             Utils.Logger.SetLogger(_dummylog);
 
@@ -22,7 +22,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLogI()
+        public void Logger_I()
         {
             Utils.Logger.SetLogger(_dummylog);
 
@@ -32,7 +32,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLogW()
+        public void Logger_W()
         {
             Utils.Logger.SetLogger(_dummylog);
 
@@ -42,7 +42,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLogE()
+        public void Logger_E()
         {
             Utils.Logger.SetLogger(_dummylog);
 
@@ -52,7 +52,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLogX()
+        public void Logger_X()
         {
             Utils.Logger.SetLogger(_dummylog);
 
@@ -64,7 +64,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLogX4()
+        public void Logger_X4()
         {
             Utils.Logger.SetLogger(_dummylog);
 
@@ -80,7 +80,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLogX5()
+        public void Logger_X5()
         {
             Utils.Logger.SetLogger(_dummylog);
 
@@ -97,7 +97,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLogSuspendAndResume()
+        public void Logger_SuspendAndResume()
         {
             Utils.Logger.SetLogger(_dummylog);
 

@@ -12,7 +12,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLevelD()
+        public void LevelLogger_D()
         {
             Utils.LevelLogger.SetLogger(_dummylog);
 
@@ -28,7 +28,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLevelI()
+        public void LevelLogger_I()
         {
             Utils.LevelLogger.SetLogger(_dummylog);
 
@@ -44,7 +44,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLevelW()
+        public void LevelLogger_W()
         {
             Utils.LevelLogger.SetLogger(_dummylog);
 
@@ -61,7 +61,7 @@ namespace UtilsTestsLibrary
 
 
         [TestMethod]
-        public void TestLevelE()
+        public void LevelLogger_E()
         {
             Utils.LevelLogger.SetLogger(_dummylog);
 
@@ -72,7 +72,7 @@ namespace UtilsTestsLibrary
         }
 
         [TestMethod]
-        public void TestLevelX()
+        public void LevelLogger_X()
         {
             Utils.LevelLogger.SetLogger(_dummylog);
 
